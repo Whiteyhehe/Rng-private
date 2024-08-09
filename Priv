@@ -20,7 +20,7 @@ local MainTab = Window:MakeTab({
 MainTab:AddLabel("Welcome to the Main Tab")
 
 -- Add a toggle for Auto Roll
-local autoRoll = false
+local autoRoll = true
 
 MainTab:AddToggle({
     Name = "Auto Roll",
