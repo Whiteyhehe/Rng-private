@@ -1,5 +1,5 @@
 -- Load Orion Library
-local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
 
 -- Create a new window
 local Window = OrionLib:MakeWindow({
@@ -88,6 +88,7 @@ local useHastePotion2 = false
 local useHeavenlyPotion = false
 local useSwiftnessElixir = false
 local useLuckPotion3 = false
+local useGodlikeElixir = false -- Add new toggle for GodlikeElixir
 
 PotionsTab:AddToggle({
     Name = "Auto Use LuckPotion1",
@@ -145,10 +146,17 @@ PotionsTab:AddToggle({
     end
 })
 
+PotionsTab:AddToggle({
+    Name = "Auto Use GodlikeElixir", -- Add toggle for GodlikeElixir
+    Default = false,
+    Callback = function(value)
+        useGodlikeElixir = value
+    end
+})
+
 -- Function to auto-use potions
 local function autoUsePotions()
     while true do
-        wait(1)
         if useHeavenlyPotion then
             game:GetService("ReplicatedStorage").Source.Potions.Remotes.Use:InvokeServer("HeavenlyPotion", 100000000)
         end
@@ -170,6 +178,14 @@ local function autoUsePotions()
         if useHastePotion2 then
             game:GetService("ReplicatedStorage").Source.Potions.Remotes.Use:InvokeServer("HastePotion2", 1000000)
         end
+        if useGodlikeElixir then -- Check for GodlikeElixir toggle
+            local args = {
+                [1] = "GodlikeElixir",
+                [2] = 10000000
+            }
+            game:GetService("ReplicatedStorage").Source.Potions.Remotes.Use:InvokeServer(unpack(args))
+        end
+        wait(0) -- Remove delay between each iteration
     end
 end
 
