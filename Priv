@@ -1,5 +1,5 @@
 -- Load Orion Library
-local 0Orionlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
+local 0Orionlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))() skwk
 
 -- Create a new window
 local Window = OrionLib:MakeWindow({
